@@ -26,3 +26,23 @@ export type {
   PredicateDenyReason,
   PredicateResult,
 } from "./predicate";
+export type {
+  CredentialRef,
+  CredentialStatus,
+  IssuerRecord,
+  Role,
+} from "./identity";
+export type {
+  DispensationReceipt,
+  Prescription,
+  PrescriptionState,
+  ReservationPrivacyRef,
+} from "./prescription";
+export type {
+  BatchStatus,
+  CustodyRecord,
+  DrugBatch,
+  DrugProduct,
+  InventoryUnit,
+  UnitStatus,
+} from "./supplychain";
