@@ -73,6 +73,7 @@
             packages-typecheck = pkgs.runCommand "medichain-packages-typecheck"
               {
                 nativeBuildInputs = [
+                  pkgs.bun
                   pkgs.typescript
                 ];
                 src = ./.;
@@ -84,6 +85,8 @@
                 echo "typechecking $package_dir"
                 (cd "./source/$package_dir" && tsc -b --pretty false)
               done
+
+              (cd ./source/domain && bun test)
 
               mkdir -p "$out"
             '';

@@ -19,3 +19,10 @@ export type {
   DelayedOfflineAuditEvent,
   OnlineAuditEvent,
 } from "./audit";
+export {
+  evaluateReleasePredicate,
+} from "./predicate";
+export type {
+  PredicateDenyReason,
+  PredicateResult,
+} from "./predicate";
