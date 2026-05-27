@@ -1,0 +1,4 @@
+.exo/
+node_modules/
+dist/
+*.tsbuildinfo
