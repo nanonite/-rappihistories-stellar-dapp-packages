@@ -87,6 +87,7 @@
               done
 
               (cd ./source/domain && bun test)
+              (cd ./source/crypto && bun test)
 
               mkdir -p "$out"
             '';
