@@ -71,6 +71,19 @@ describe("evaluateReleasePredicate", () => {
     });
   });
 
+  test("denies write grants because append does not release ciphertext", () => {
+    expect(
+      evaluateReleasePredicate(
+        grantWith({ grantType: "write" }),
+        caller,
+        nowSeconds,
+      ),
+    ).toEqual({
+      allowed: false,
+      reason: "WRITE_GRANT_NOT_RELEASABLE",
+    });
+  });
+
   test("denies before the reveal timestamp", () => {
     expect(
       evaluateReleasePredicate(

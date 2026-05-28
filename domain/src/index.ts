@@ -6,6 +6,7 @@ export type {
   CredentialProof,
   GrantType,
   PresenceProof,
+  WriteGrant,
 } from "./access.js";
 export type {
   ClinicalHistoryTier,

@@ -66,7 +66,7 @@ The envelope describing a clinical record without revealing its content. Embedde
 ### `GrantType`
 
 ```ts
-type GrantType = "normal" | "break_glass" | "offline_emergency";
+type GrantType = "normal" | "break_glass" | "offline_emergency" | "write";
 ```
 
 | Value | Semantics |
@@ -74,6 +74,7 @@ type GrantType = "normal" | "break_glass" | "offline_emergency";
 | `normal` | Routine access within a clinical relationship |
 | `break_glass` | Emergency override — triggers enhanced audit |
 | `offline_emergency` | Access without network connectivity; subject to delayed audit |
+| `write` | Append-only authoring permission. Not valid for KMS key release. |
 
 ---
 
@@ -231,6 +232,7 @@ type PredicateDenyReason =
   | "WRONG_REQUESTER"
   | "REVOKED"
   | "VETOED"
+  | "WRITE_GRANT_NOT_RELEASABLE"
   | "BEFORE_REVEAL"
   | "EXPIRED";
 ```
@@ -243,6 +245,7 @@ Exhaustive set of reasons a release request is denied.
 | `WRONG_REQUESTER` | `grant.grantee !== caller` |
 | `REVOKED` | `grant.revoked === true` |
 | `VETOED` | `grant.vetoed === true` |
+| `WRITE_GRANT_NOT_RELEASABLE` | `grant.grantType === "write"` |
 | `BEFORE_REVEAL` | `nowSeconds < grant.revealAt` |
 | `EXPIRED` | `nowSeconds >= grant.expiresAt` |
 
@@ -279,6 +282,7 @@ grant !== null
   AND grant.grantee === caller
   AND NOT grant.revoked
   AND NOT grant.vetoed
+  AND grant.grantType != "write"
   AND grant.revealAt <= nowSeconds
   AND nowSeconds < grant.expiresAt
 ```
@@ -313,3 +317,14 @@ if (result.allowed) {
 | Conformance tests | Compares predicate output against on-chain broker grant states |
 
 This function is the off-chain canonical mirror of the Soroban contract's on-chain authorization path. The contract and this predicate must remain aligned; if the contract rule changes, open a follow-up task to update this package.
+
+## Append Write Grants
+
+`GrantType: "write"` exists only for the Option A append path. A clinician with
+a live write grant can author a new encrypted payload, upload that ciphertext to
+storage, and call `append_record` with the resulting locator and commitment.
+That operation does not read or release any existing ciphertext.
+
+The KMS release predicate must reject write grants. Reads of the appended record
+entry still require a separate `normal`, `break_glass`, or `offline_emergency`
+grant for that record id.

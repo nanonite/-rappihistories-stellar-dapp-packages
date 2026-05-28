@@ -5,6 +5,7 @@ export type PredicateDenyReason =
   | "WRONG_REQUESTER"
   | "REVOKED"
   | "VETOED"
+  | "WRITE_GRANT_NOT_RELEASABLE"
   | "BEFORE_REVEAL"
   | "EXPIRED";
 
@@ -31,6 +32,10 @@ export function evaluateReleasePredicate(
 
   if (grant.vetoed) {
     return { allowed: false, reason: "VETOED" };
+  }
+
+  if (grant.grantType === "write") {
+    return { allowed: false, reason: "WRITE_GRANT_NOT_RELEASABLE" };
   }
 
   if (nowSeconds < grant.revealAt) {

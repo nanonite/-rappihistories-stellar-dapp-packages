@@ -28,9 +28,12 @@ export interface RecordLocator {
 export interface RecordMeta {
   recordId: string;
   patient: string;
+  subject?: string;
+  author?: string;
   category: RecordCategory;
   tier: ClinicalHistoryTier;
   locator: RecordLocator;
   createdAt: number;
   updatedAt?: number;
+  writeGrantId?: string | null;
 }

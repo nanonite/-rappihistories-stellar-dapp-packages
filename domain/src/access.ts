@@ -1,6 +1,6 @@
 import type { RecordCategory, RecordMeta } from "./clinical-history";
 
-export type GrantType = "normal" | "break_glass" | "offline_emergency";
+export type GrantType = "normal" | "break_glass" | "offline_emergency" | "write";
 
 export interface Capability {
   grantId: string;
@@ -35,4 +35,14 @@ export interface AccessGrant {
   expiresAt: number;
   revoked: boolean;
   vetoed: boolean;
+}
+
+export interface WriteGrant {
+  grantId: string;
+  subject: string;
+  grantee: string;
+  scopeCategory: RecordCategory;
+  expiresAt: number;
+  revoked: boolean;
+  createdAt: number;
 }
