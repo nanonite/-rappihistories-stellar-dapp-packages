@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- STR-1 — Storage provider interface and MinIO implementation (#4)
 - STR-2 — Envelope encryption service (#5)
 - DOM-3 — Prescription and supply-chain types (#3)
 - DOM-1 — Core clinical and access types (#1)

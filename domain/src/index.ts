@@ -11,6 +11,7 @@ export type {
   ClinicalHistoryTier,
   RecordCategory,
   RecordLocator,
+  RecordLocatorType,
   RecordMeta,
 } from "./clinical-history";
 export type {

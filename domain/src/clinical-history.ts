@@ -17,7 +17,10 @@ export type RecordCategory =
   | "reproductive_health"
   | "substance_use";
 
+export type RecordLocatorType = "s3" | "opaque";
+
 export interface RecordLocator {
+  locatorType: RecordLocatorType;
   locator: string;
   contentCommitment: string;
 }

@@ -13,6 +13,7 @@ const baseGrant: AccessGrant = {
     category: "condition",
     tier: "full_clinical_history",
     locator: {
+      locatorType: "opaque",
       locator: "opaque://record-1",
       contentCommitment: "b4f77d5c0c17d4b91a55d9d4c8219e38",
     },
