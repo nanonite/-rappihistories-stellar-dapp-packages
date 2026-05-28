@@ -6,39 +6,39 @@ export type {
   CredentialProof,
   GrantType,
   PresenceProof,
-} from "./access";
+} from "./access.js";
 export type {
   ClinicalHistoryTier,
   RecordCategory,
   RecordLocator,
   RecordLocatorType,
   RecordMeta,
-} from "./clinical-history";
+} from "./clinical-history.js";
 export type {
   AuditEvent,
   AuditEventAction,
   DelayedOfflineAuditEvent,
   OnlineAuditEvent,
-} from "./audit";
+} from "./audit.js";
 export {
   evaluateReleasePredicate,
-} from "./predicate";
+} from "./predicate.js";
 export type {
   PredicateDenyReason,
   PredicateResult,
-} from "./predicate";
+} from "./predicate.js";
 export type {
   CredentialRef,
   CredentialStatus,
   IssuerRecord,
   Role,
-} from "./identity";
+} from "./identity.js";
 export type {
   DispensationReceipt,
   Prescription,
   PrescriptionState,
   ReservationPrivacyRef,
-} from "./prescription";
+} from "./prescription.js";
 export type {
   BatchStatus,
   CustodyRecord,
@@ -46,4 +46,4 @@ export type {
   DrugProduct,
   InventoryUnit,
   UnitStatus,
-} from "./supplychain";
+} from "./supplychain.js";
