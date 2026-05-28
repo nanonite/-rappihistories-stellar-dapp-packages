@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- WLT-2 — Freighter wallet adapter (#7)
+- WLT-1 — WalletAdapter interface and MockWalletAdapter (#6)
 - STR-1 — Storage provider interface and MinIO implementation (#4)
 - STR-2 — Envelope encryption service (#5)
 - DOM-3 — Prescription and supply-chain types (#3)
